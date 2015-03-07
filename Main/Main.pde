@@ -34,12 +34,12 @@ Tile[][] getField() {
 
 void setup() {
   //set background music and loop points in the music
-  minim = new Minim(this);
+  /*minim = new Minim(this);
   player = minim.loadFile("background.mp3");
   player.play();
   player.loop();
   player.setLoopPoints(1300, 44000);
-
+  */
   //variable setup
   scaleOf = 2;
   tilesheet = loadImage("tilesheet.png");
@@ -57,7 +57,6 @@ void setup() {
   playerOne = loadImage("megamanMove.png");
   playerTwo = loadImage("megamantest.png");
   naviM = new Navi(true, 1, 1, playerOne, scaleOf, this);
-  //naviN = new Navi(false, 1, 1, playerTwo, scaleOf, this);
   fieldPosX = width/2 - 40*scaleOf * fieldX/2;
   fieldPosY = (int)(height/2 + 25*scaleOf * fieldY/2.0);
   //setup horizontal tiles
@@ -96,7 +95,6 @@ void draw() {
   background(0);
   displayField();
   naviM.update();
-  //naviN.display(battlefield);
 }
 
 void displayField() {

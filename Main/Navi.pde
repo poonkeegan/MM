@@ -2,7 +2,7 @@ class Navi implements Object {
   protected Main main;
   protected int x;
   protected int y;
-  protected int HP;
+  protected int hp;
   protected boolean redSide;
   protected PImage sprite; 
   protected int scaleOf;
@@ -20,6 +20,7 @@ class Navi implements Object {
     status = "normal";
     aniTimer = 10;
     dir = "stop";
+    hp = 100;
 
     redSide = red;
     if (redSide) {
@@ -70,36 +71,7 @@ class Navi implements Object {
           dir = "stop";
           status = "normal";
         }
-        
       }
-
-      //        int oldX = x;
-      //        int oldY = y;
-      //        println(dir);
-      //          if (dir.equals("up")) {
-      //            y--;
-      //          } else if (dir.equals("down")) {
-      //            y++;
-      //          } else if (dir.equals("left")) {
-      //            x--;
-      //          } else if (dir.equals("right")) {
-      //            x++;
-      //          }//change position
-      //          dir = "stop";
-      //  
-      //        if (y < 0||y >= fieldY) {
-      //          y = oldY;
-      //          status = "normal";
-      //        }else if (x < 0||x >= fieldX) {
-      //          x = oldX;
-      //          status = "normal";
-      //        }//check bondaries
-      //    
-      //        else if (main.getTile(x, y).getRedTeam() != redSide) {
-      //          x = oldX;
-      //          y = oldY;
-      //          status = "normal";
-      //        }//check side colours
     }
   }
 
@@ -145,14 +117,21 @@ class Navi implements Object {
     }
   }
   public void display(Tile[][] bfield) {
+    
     if (redSide) {
-      image(sprite, ((bfield[x][y].getMid()[0])-sprite.width/2), bfield[x][y].getMid()[1]-sprite.height+5*scaleOf);
+      image(sprite, ((bfield[x][y].getMid()[0])-sprite.width/2), 
+                      bfield[x][y].getMid()[1]-sprite.height+5*scaleOf);
     } else {
       pushMatrix();
       scale(-1, 1);
-      image(sprite, ((bfield[x][y].getMid()[0])-sprite.width/2)*-1-sprite.width, bfield[x][y].getMid()[1]-sprite.height+5*scaleOf);
+      image(sprite, ((bfield[x][y].getMid()[0])-sprite.width/2)*(-1)-sprite.width, 
+                      bfield[x][y].getMid()[1]-sprite.height+5*scaleOf);
       popMatrix();
     }
+    fill(255);
+    textAlign(CENTER);
+    text(hp,((bfield[x][y].getMid()[0])), 
+              bfield[x][y].getMid()[1]-sprite.height+15*scaleOf);
   }
 
 
